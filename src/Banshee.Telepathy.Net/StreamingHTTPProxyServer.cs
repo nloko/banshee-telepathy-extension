@@ -47,21 +47,19 @@ using Mono.Unix;
 
 namespace Banshee.Telepathy.Net
 {
-    internal class StreamingHTTPProxyServer : BaseWebServer
+    internal class StreamingHTTPProxyServer : BaseHttpServer
     {
-        public StreamingHTTPProxyServer() : base ()
+        public StreamingHTTPProxyServer() : base (new IPEndPoint (IPAddress.Any, 7777), "StreamingHTTPProxyServer")
         {
-            this.Name = "StreamingHTTPProxyServer";
-            
-            port = 7777;
-            (this.EndPoint as IPEndPoint).Port = (int) port;
+//            port = 7777;
+//            (this.EndPoint as IPEndPoint).Port = (int) port;
         }
 
-        public override void Start (int backlog) 
-        {
-            base.Start (backlog);
-            port = (ushort)(server.LocalEndPoint as IPEndPoint).Port;
-        }
+//        public override void Start (int backlog) 
+//        {
+//            base.Start (backlog);
+//           port = (ushort)(server.LocalEndPoint as IPEndPoint).Port;
+//        }
 
         protected override bool HandleRequest (Socket client) 
         {
@@ -179,12 +177,12 @@ namespace Banshee.Telepathy.Net
             return stream_socket;
         }
 
-        private ushort port;
-        public ushort Port {
-            get { 
-                return port;
-            }
-        }
+//        private ushort port;
+//        public ushort Port {
+//            get { 
+//                return port;
+//            }
+//        }
 
         private static IPAddress local_address = IPAddress.Parse("127.0.0.1");
         public IPAddress IPAddress {

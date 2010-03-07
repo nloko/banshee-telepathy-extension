@@ -27,11 +27,11 @@
 //
 
 using System;
-using System.Timers;
 using System.Collections.Generic;
 using Mono.Unix;
 
 using Hyena.Data.Sqlite;
+using Hyena;
 
 using Banshee.Base;
 using Banshee.Collection;
@@ -66,11 +66,11 @@ namespace Banshee.Telepathy.Data
         private const int chunk_length = 250;
 		private readonly TubeManager tube_manager;
 		private readonly IDictionary<LibraryDownload, ContactPlaylistSource> playlist_map = new Dictionary<LibraryDownload, ContactPlaylistSource> ();
-        private ContactRequestDialog dialog;
+//        private ContactRequestDialog dialog;
         
-        private delegate bool GetBoolPropertyCaller ();
-        private GetBoolPropertyCaller permission_caller;
-        private GetBoolPropertyCaller downloading_caller;
+//        private delegate bool GetBoolPropertyCaller ();
+//        private GetBoolPropertyCaller permission_caller;
+//        private GetBoolPropertyCaller downloading_caller;
         
         private static readonly string tmp_download_path = Paths.Combine (TelepathyService.CacheDirectory, "partial-downloads");
         public static string TempDownloadDirectory {
@@ -199,7 +199,6 @@ namespace Banshee.Telepathy.Data
             get { return is_temporary; }
         }
 
-        private bool downloading_allowed = true;
         public bool IsDownloadingAllowed {
             get { 
 				if (tube_manager != null) {
@@ -287,7 +286,7 @@ namespace Banshee.Telepathy.Data
             return new ContactTrackInfo (track, this);
         }
 
-        internal void InvalidateCaches ()
+        internal new void InvalidateCaches ()
         {
             ThreadAssist.SpawnFromMain (delegate {
                 base.InvalidateCaches ();    
@@ -339,7 +338,7 @@ namespace Banshee.Telepathy.Data
                     	Catalog.GetString ("is requesting to browse your Banshee library"));
 			
 			// show notify bubble every 30 seconds
-			Timer notify_timer = new Timer (30000);
+			System.Timers.Timer notify_timer = new System.Timers.Timer (30000);
 			notify_timer.Elapsed += (o, a) => {
                 if (!getting_response) {
                		notify_timer.Stop ();
@@ -353,7 +352,7 @@ namespace Banshee.Telepathy.Data
 			
 			// pulse source every 5 seconds
 			NotifyUser ();
-			Timer timer = new Timer (5000);
+			System.Timers.Timer timer = new System.Timers.Timer (5000);
             timer.Elapsed += (o, a) => {
                 if (!getting_response) {
                		timer.Stop ();

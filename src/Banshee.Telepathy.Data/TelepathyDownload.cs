@@ -84,7 +84,7 @@ namespace Banshee.Telepathy.Data
                 IMetadataProviderService service = activity.GetDBusObject <IMetadataProviderService> (MetadataProviderService.BusName, MetadataProviderService.ObjectPath);
                 if (service != null) {
                     base.Queue ();
-                    Banshee.Base.ThreadAssist.Spawn (delegate {
+                    ThreadAssist.Spawn (delegate {
 						lock (sync) {
 	                        try {
 	                            service.DownloadFile (long.Parse (Key.Name) , "audio/mpeg");

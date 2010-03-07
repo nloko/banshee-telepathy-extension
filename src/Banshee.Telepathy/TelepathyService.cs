@@ -163,8 +163,8 @@ namespace Banshee.Telepathy
             container = new ContactContainerSource (this);
             ServiceManager.SourceManager.AddSource (container);
 
-            download_manager = new DownloadManagerUi (this);
-            upload_manager = new UploadManagerUi (this);
+            download_manager = new DownloadManagerUi ();
+            upload_manager = new UploadManagerUi ();
 
             try {
                 locator = new ConnectionLocator ();

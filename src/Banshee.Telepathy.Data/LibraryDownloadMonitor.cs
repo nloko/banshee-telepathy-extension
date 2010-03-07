@@ -295,7 +295,7 @@ namespace Banshee.Telepathy.Data
             payload_handler = handler;
             processing = true;
 
-            Banshee.Base.ThreadAssist.Spawn (Process);
+            ThreadAssist.Spawn (Process);
         }
 
         public void StopProcessing ()
@@ -320,7 +320,7 @@ namespace Banshee.Telepathy.Data
                 handler (this, Dequeue ());
             }
 
-            Banshee.Base.ThreadAssist.ProxyToMain (delegate {
+            ThreadAssist.ProxyToMain (delegate {
                 processed = true;
                 OnProcessingComplete (EventArgs.Empty);
             });

@@ -43,17 +43,17 @@ namespace Banshee.Telepathy.Gui
 {
     public class UploadManagerUi : TransferManagerUi
     {
-        private TelepathyService service = null;
+        //private TelepathyService service = null;
         private readonly TransferManager<TelepathyUploadKey, TelepathyUpload> upload_manager = new TransferManager<TelepathyUploadKey, TelepathyUpload> ();
         
-        public UploadManagerUi (TelepathyService service) : base ()
+        public UploadManagerUi () : base ()
         {
-            this.service = service;
+            //this.service = service;
             upload_manager.Completed += OnCompleted;
             upload_manager.Updated += OnUpdated;
         }
         
-         public TransferManager<TelepathyUploadKey, TelepathyUpload> UploadManager {
+        public TransferManager<TelepathyUploadKey, TelepathyUpload> UploadManager {
             get { return upload_manager; }
         }
         

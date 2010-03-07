@@ -47,16 +47,15 @@ namespace Banshee.Telepathy.Net
     // https://bugzilla.novell.com/show_bug.cgi?id=481687
     // We need to use Unix sockets for the StreamTube, but GStreamer does not provide
     // a plugin for Unix sockets. So, the HTTP proxy is used to hook everything up.
-    internal class StreamingServer : BaseWebServer
+    internal class StreamingServer : BaseHttpServer
     {
         static StreamingServer ()
         {
             local_address = "/tmp/banshee-TS-" + GenerateRandomString (8);
         }
         
-        public StreamingServer () : base (new UnixEndPoint (StreamingServer.Address))
+        public StreamingServer () : base (new UnixEndPoint (StreamingServer.Address), "Streaming Server")
         {
-            this.Name = "Streaming Server";
         }
 
         public override void Stop () 
@@ -176,13 +175,13 @@ namespace Banshee.Telepathy.Net
             return builder.ToString ();
         }
         
-        protected new static string GetHtmlHeader (string title)
+        protected static string GetHtmlHeader (string title)
         {
             return String.Format ("<html><head><title>{0} - Banshee Telepathy Browser</title></head><body><h1>{0}</h1>", 
                 title);
         }
         
-        protected new static string GetHtmlFooter ()
+        protected static string GetHtmlFooter ()
         {
             return String.Format ("<hr /><address>Generated on {0} by " + 
                 "Banshee Telepathy Plugin (<a href=\"http://banshee-project.org\">http://banshee-project.org</a>)",

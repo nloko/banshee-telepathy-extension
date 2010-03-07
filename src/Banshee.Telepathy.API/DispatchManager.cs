@@ -311,7 +311,7 @@ namespace Banshee.Telepathy.API
             return false;
         }
         
-        protected void OnDispatched (Dispatchable d, EventArgs args)
+        private void OnDispatched (Dispatchable d, EventArgs args)
         {
             var handler = Dispatched;
             if (handler != null) {

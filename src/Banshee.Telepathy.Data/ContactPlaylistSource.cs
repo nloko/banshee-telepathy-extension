@@ -136,7 +136,7 @@ namespace Banshee.Telepathy.Data
             get { return false; }
         }
 
-        internal void InvalidateCaches ()
+        internal new void InvalidateCaches ()
         {
             ThreadAssist.SpawnFromMain (delegate {
                 base.InvalidateCaches ();

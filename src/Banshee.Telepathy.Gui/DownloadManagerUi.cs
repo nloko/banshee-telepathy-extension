@@ -41,14 +41,14 @@ namespace Banshee.Telepathy.Gui
 {
     public class DownloadManagerUi : TransferManagerUi
     {
-        private TelepathyService service = null;
+        //private TelepathyService service = null;
         private readonly TelepathyDownloadManager download_manager = new TelepathyDownloadManager ();
 		private Banshee.Library.LibraryImportManager import_manager = null;
 
 
-        public DownloadManagerUi (TelepathyService service) : base ()
+        public DownloadManagerUi () : base ()
         {
-            this.service = service;
+            //this.service = service;
             Title = Catalog.GetString ("Download(s) from Contacts");
             CancelMessage = Catalog.GetString ("Downloads are in progress. Would you like to cancel them?");
 

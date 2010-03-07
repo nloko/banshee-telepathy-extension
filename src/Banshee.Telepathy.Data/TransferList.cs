@@ -55,14 +55,14 @@ namespace Banshee.Telepathy.Data
             }
         }
         
-        public void Add (K key, V value)
+        public new void Add (K key, V value)
         {
             lock (sync) {
                 base.Add (key, value);
             }
         }
         
-        public bool Remove (K key)
+        public new bool Remove (K key)
         {
             lock (sync) {
                 return base.Remove (key);
